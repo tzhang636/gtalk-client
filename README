@@ -1,8 +1,4 @@
-MP1 README
-
 Steps and Design Decisions
-
-I completed all 9 steps for this MP. 
 
 Steps 1-3 were completed by simply following the instructions on the specs. In step 2, I slightly modified the code in client.c to establish a first contact with Google. This code was taken off Beej's Guide. 
 
@@ -25,4 +21,3 @@ Acknowledgements
 http://beej.us/guide/bgnet/output/html/multipage/index.html
 http://www.gnu.org/software/gnutls/manual/html_node/Simple-client-example-with-X_002e509-certificate-support.html
 http://www.gnu.org/software/gsasl/manual/gsasl.html#Example-1
-
