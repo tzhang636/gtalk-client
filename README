@@ -1,0 +1,28 @@
+MP1 README
+
+Steps and Design Decisions
+
+I completed all 9 steps for this MP. 
+
+Steps 1-3 were completed by simply following the instructions on the specs. In step 2, I slightly modified the code in client.c to establish a first contact with Google. This code was taken off Beej's Guide. 
+
+In step 4, I created a TLS secure session with libgnutls by modifying the sample code from the link on the specs. Specifically, I removed the code that dealt with verification of the server's certificate.
+
+In step 5, I first retrieved a username and password while disabling echoling, and completed an SASL PLAIN authetication with libgsasl by again modifying the code from the specs. Specifically, I changed the input to the gsasl_property_set() function to take in the username and password that I retrieved.
+
+In step 6, I simply followed the instructions on the specs.
+
+Steps 7-9 is where I made most of my major design decisions.
+
+First, I used an infinite while loop for my main chat session, and in each iteration, I used select() to continously poll to see if any information is made ready to be read, either from stdin or from the server, or both.
+
+Second, I implemented my roster list as an array of PeerUser pointers, where each pointer either points to a PeerUser or NULL. A PeerUser is simply a struct with three fields, show, username, and status. To add a new PeerUser, I simply loop through the array to first check if a PeerUser needs to be updated. If not, then, I loop through again to find the first NULL pointer in the array and allocate a new PeerUser object at that index. To remove a PeerUser, I simply loop through the array and remove the entry that matches the jid.
+
+Third, to maintain the recipient, I simply have a global string that keeps track of the username of the recipient that the user wants to message so far. My program will check to see if a PeerUser is available before changing the recipient. If the recipient that the user wants to change to is not available, then I simply keep the previous recipient.
+
+Acknowledgements
+
+http://beej.us/guide/bgnet/output/html/multipage/index.html
+http://www.gnu.org/software/gnutls/manual/html_node/Simple-client-example-with-X_002e509-certificate-support.html
+http://www.gnu.org/software/gsasl/manual/gsasl.html#Example-1
+
